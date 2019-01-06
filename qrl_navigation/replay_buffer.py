@@ -3,6 +3,8 @@ import numpy as np
 import random
 import torch
 
+# TODO: Wighted buffer
+# TODO: Basic test coverage
 
 class ReplayBuffer:
     """Fixed-size buffer to store experience tuples."""

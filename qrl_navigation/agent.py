@@ -143,3 +143,4 @@ class Agent(AgentInterface):
 
     def load(self, file_name):
         self.qnetwork_local.load_state_dict(torch.load(file_name))
+        self.qnetwork_target.load_state_dict(torch.load(file_name))

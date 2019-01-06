@@ -46,4 +46,5 @@ def dqn_training(agent, env, save_path, n_episodes=2000, n_max_steps_per_episode
             agent.save(save_path)
 
     printer(f'\rWe have achieved {best_mean_score} mean score (13+ is good result)')
+    # TODO: Return dictionary with verbose info
     return scores
