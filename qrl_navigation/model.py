@@ -27,6 +27,7 @@ class QNetwork(nn.Module):
         self.fc_layers.append(nn.Linear(state_size, fc_units[0]))
         self.fc_layers += [nn.Linear(fc_units[idx], fc_units[idx + 1]) for idx in range(len(fc_units) - 1)]
         self.fc_layers.append(nn.Linear(fc_units[-1], action_size))
+        self.fc_layers = nn.ModuleList(self.fc_layers)
 
     def forward(self, state):
         """Build a network that maps state -> action values."""
