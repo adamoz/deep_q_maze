@@ -27,6 +27,7 @@ class Agent():
             update_rate (int): Every update_rate step network params are updated
 
         """
+        self.device = device
         self.gamma = gamma
         self.tau = tau
         self.update_rate = update_rate
@@ -118,3 +119,9 @@ class Agent():
 
         for target_param, local_param in zip(target_model.parameters(), local_model.parameters()):
             target_param.data.copy_(tau * local_param.data + (1.0 - tau) * target_param.data)
+
+    def save(self, file_name):
+        torch.save(self.qnetwork_local.state_dict(), file_name)
+
+    def load(self, file_name):
+        self.qnetwork_local.load_state_dict(torch.load(file_name))
