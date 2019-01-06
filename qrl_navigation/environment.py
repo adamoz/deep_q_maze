@@ -35,7 +35,7 @@ class BananaMazeEnv(EnvInterface):
         next_state = env_info.vector_observations[0]
         reward = env_info.rewards[0]
         done = env_info.local_done[0]
-        return (next_state, reward, done)
+        return (next_state, reward, int(done))
 
     def close(self):
         self.env.close()
