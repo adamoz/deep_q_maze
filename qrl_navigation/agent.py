@@ -1,3 +1,4 @@
+import abc
 import numpy as np
 from qrl_navigation.model import QNetwork
 from qrl_navigation.replay_buffer import ReplayBuffer
@@ -7,7 +8,23 @@ import torch.nn.functional as F
 import torch.optim as optim
 
 
-class Agent():
+class AgentInterface(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def step(self, state, action, reward, next_state, done):
+        """Save state to replay buffer and train if needed."""
+
+    @abc.abstractmethod
+    def act(self, state, eps=None, tau=None):
+        """Return actions for given state as per current policy.
+
+        Params:
+            state (array_like): current state
+            eps (float): epsilon, for epsilon-greedy action selection
+            tau (float): For soft update of target network parameters
+        """
+
+
+class Agent(AgentInterface):
     """Interacts with and learns from the environment."""
     def __init__(self, state_size, action_size, fc_units=[64, 64], buffer_size=int(1e5), update_rate=4,
                  batch_size=64, tau=1e-3, eps=0., gamma=0.99, lr=5e-4, seed=0, device='cpu'):
@@ -59,6 +76,7 @@ class Agent():
         Params:
             state (array_like): current state
             eps (float): epsilon, for epsilon-greedy action selection
+            tau (float): For soft update of target network parameters
         """
 
         if eps is None:
