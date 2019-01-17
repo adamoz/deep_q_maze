@@ -273,7 +273,6 @@ class DuelingWeightedAgent(AgentInterface):
         scaling_coef = 1 / (self.buffer_size * weights)
         scaling_coef = torch.pow(scaling_coef, self.beta)
         self.beta = min(1.005 * self.beta, 1)
-        # scaling_coef = scaling_coef / torch.max(weights)
 
         # Compute loss
         loss = torch.pow(Q_expected - Q_targets, 2)
