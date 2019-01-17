@@ -73,7 +73,7 @@ class ReplayWeightedBuffer:
         e = self.experience(state, action, reward, next_state, done)
         self.memory.append(e)
         self.errs.append(np.abs(err) + 0.01)
-        self.errs = self.errs[:self.buffer_size]
+        self.errs = self.errs[-self.buffer_size:]
 
     def sample(self):
         """Randomly sample a batch of experiences from memory."""
@@ -92,7 +92,7 @@ class ReplayWeightedBuffer:
 
     def update_errs(self, values, indexes):
         self.errs = np.array(self.errs)
-        self.errs[indexes] = values + 0.01
+        self.errs[indexes] = np.abs(values) + 0.01
         self.errs = self.errs.tolist()
 
     def is_ready_to_sample(self):
