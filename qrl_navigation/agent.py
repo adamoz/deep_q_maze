@@ -51,6 +51,8 @@ class Agent(AgentInterface):
         self.eps = eps
         self.state_size = state_size
         self.action_size = action_size
+        self.fc_units = fc_units
+        self.dueling = dueling
 
         # Q-Network
         if dueling:
@@ -63,6 +65,9 @@ class Agent(AgentInterface):
 
         self.memory = ReplayBuffer(buffer_size=buffer_size, batch_size=batch_size, seed=seed)
         self.t_step = 0
+
+    def __repr__(self):
+        return f'Agent(state_size={self.state_size}, action_size={self.action_size}, fc_units={self.fc_units}, device="{self.device}", dueling={self.dueling})'
 
     def step(self, state, action, reward, next_state, done):
         # Save experience in replay memory
@@ -150,11 +155,11 @@ class Agent(AgentInterface):
         self.qnetwork_target.load_state_dict(torch.load(file_name))
 
 
-class DuelingWeightedAgent(AgentInterface):
+class WeightedAgent(AgentInterface):
     """Interacts with and learns from the environment."""
     def __init__(self, state_size, action_size, fc_units=[64, 64], buffer_size=int(1e5), update_rate=4,
                  batch_size=64, tau=1e-3, eps=0., gamma=0.99, lr=5e-4, seed=0, device='cpu', dueling=True):
-        """Initialize an Agent object using dueling network and weighted replay buffer.
+        """Initialize an Agent object using weighted replay buffer.
 
         Params:
             state_size (int): dimension of each state
@@ -191,6 +196,9 @@ class DuelingWeightedAgent(AgentInterface):
 
         self.memory = ReplayWeightedBuffer(buffer_size=buffer_size, batch_size=batch_size, seed=seed)
         self.t_step = 0
+
+    def __repr__(self):
+        return f'WeightedAgent(state_size={self.state_size}, action_size={self.action_size}, fc_units={self.fc_units}, device="{self.device}", dueling={self.dueling})'
 
     def step(self, state, action, reward, next_state, done):
         # Save experience in replay memory
