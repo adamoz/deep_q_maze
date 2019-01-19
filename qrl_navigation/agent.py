@@ -183,6 +183,8 @@ class WeightedAgent(AgentInterface):
         self.state_size = state_size
         self.action_size = action_size
         self.buffer_size = buffer_size
+        self.fc_units = fc_units
+        self.dueling = dueling
         self.beta = 0.1
 
         # Q-Network
@@ -227,7 +229,7 @@ class WeightedAgent(AgentInterface):
             Q_target = reward + (self.gamma * Q_target_next * (1 - done))
             Q_expected = self.qnetwork_local(state).detach().gather(1, action)
 
-            err = np.abs((Q_target - Q_expected).squeeze().numpy())
+            err = np.abs((Q_target - Q_expected).squeeze().cpu().numpy())
 
         self.qnetwork_local.train()
         self.qnetwork_target.train()
