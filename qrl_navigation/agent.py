@@ -63,7 +63,7 @@ class Agent(AgentInterface):
             self.qnetwork_target = QNetwork(state_size, action_size, seed, fc_units).to(device)
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=lr)
 
-        self.memory = ReplayBuffer(buffer_size=buffer_size, batch_size=batch_size, seed=seed)
+        self.memory = ReplayBuffer(buffer_size=buffer_size, batch_size=batch_size, seed=seed, device=device)
         self.t_step = 0
 
     def __repr__(self):
@@ -194,7 +194,7 @@ class WeightedAgent(AgentInterface):
             self.qnetwork_target = QNetwork(state_size, action_size, seed, fc_units).to(device)
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=lr)
 
-        self.memory = ReplayWeightedBuffer(buffer_size=buffer_size, batch_size=batch_size, seed=seed)
+        self.memory = ReplayWeightedBuffer(buffer_size=buffer_size, batch_size=batch_size, seed=seed, device=device)
         self.t_step = 0
 
     def __repr__(self):
