@@ -52,4 +52,4 @@ Then, extract the file in the `bin/` folder and use in the same manner as origin
 
 ### Instructions
 
-Check content of ```notebooks``` , more details in **Structure of package** section. There are examples of training as well as current results analysis and proposal of next steps.
+Check content of ```notebooks``` (more details in **Structure of package** section). There are examples of training as well as current results analysis and proposal of next steps.
