@@ -54,7 +54,7 @@ These instructions should help you navigate across project and possibly train yo
  - ```qrl_navigation``` - Package core with implementation of agent, environment, replay buffers etc.
  - ```tests```
  - ```bin``` - Compiled Unity environment ready for Linux operating systems.
- - ```experiments``` - Couple of experiments including trained dueling Q networks weights prepared for pytorch + metada files holding details about training. Details can be find in ```notebooks/report.ipynb```
+ - ```experiments``` - Couple of experiments **including trained dueling Q networks weights** prepared for pytorch + metada files holding details about training. Details can be find in ```notebooks/report.ipynb```
  - ```notebooks``` - Insight to usage of package and description of results.
    - ```train.ipynb``` - Example of agent training.
    - ```report.ipynb``` - Analysis of experiments and proposal of next steps.
