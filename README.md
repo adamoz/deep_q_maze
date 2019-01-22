@@ -6,7 +6,7 @@
 
 ### Introduction
 
-This project provides trainable agent (via Q-learning) navigating in a large, square world. On top of framework for training, we provide also already trained agents with detailed report addressing details of training algorithms and interesting next steps possible on the project.  
+This project provides trainable agent (via Q-learning) navigating in a large, square world. On top of framework for training, we provide also already trained agents with detailed report addressing details of training algorithms and interesting next steps possible on the project. [link](#head1234)
 
 ![Trained Agent][image1]
 
@@ -34,22 +34,28 @@ This environment is not currently used in package. You'll need to download a new
 
 Then, extract the file in the `bin/` folder and use in the same manner as original environment in `bin/unity_banana_maze`
 
-### Getting Started
+### How to use this package
+These instructions should help you navigate across project and possibly train you own agent or just evaluate already prepared models.
+
+  1) Setup proper environment, more details in [install section](#install)   
+  2) Explore structure of package (where are pretrained models, where is precompiled banana environment), more details in [structure section](#structure)  
+
+  3) Check that environment is running and get to know with it, ```notebooks/environment_introduction.ipynb``` should help  
+  4) Try to train your own agent, don't forget to setup your own path for saving model weights, ```notebooks/train.ipynb``` should help  
+  5) In case you want to see results of already trained successful agents with description of method details, check ```notebooks/report.ipynb```
+
+### <a name="install"></a> Install
  - ```python setup.py develop``` - This installs package with all requirements in develop mode for interactive updates.
  - ```install ``` [```Unity ML-Agents```](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation.md) - Unity plugin that enables games and simulations to serve as environments for training intelligent agents, Unity environment is already compiled in project.
  - ```python setup.py test -a '-v  tests/'``` - Running all tests.
 
-### Structure of package
+### <a name="structure"></a> Structure of package
 
  - ```qrl_navigation``` - Package core with implementation of agent, environment, replay buffers etc.
  - ```tests```
  - ```bin``` - Compiled Unity environment ready for Linux operating systems.
- - ```experiments``` - Couple of experiments including trained dueling Q networks and weighted replay buffers. More details in ```notebooks/report.ipynb```
+ - ```experiments``` - Couple of experiments including trained dueling Q networks weights prepared for pytorch + metada files holding details about training. Details can be find in ```notebooks/report.ipynb```
  - ```notebooks``` - Insight to usage of package and description of results.
    - ```train.ipynb``` - Example of agent training.
    - ```report.ipynb``` - Analysis of experiments and proposal of next steps.
-   - ```environment_introduction.ipynb``` - Example of environment interaction.   
-
-### Instructions
-
-Check content of ```notebooks``` (more details in **Structure of package** section). There are examples of training as well as current results analysis and proposal of next steps.
+   - ```environment_introduction.ipynb``` - Example of wrapped environment usage.   
